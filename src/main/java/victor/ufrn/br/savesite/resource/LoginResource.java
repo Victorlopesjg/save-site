@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import victor.ufrn.br.savesite.model.Login;
+import victor.ufrn.br.savesite.model.Site;
 import victor.ufrn.br.savesite.repository.LoginRepository;
 
 import javax.persistence.EntityManager;
@@ -23,7 +24,8 @@ public class LoginResource {
     @PersistenceContext
     private EntityManager em;
 
-    @PostMapping(consumes = "application/json", produces = {"application/json"})
+
+    @PostMapping(value = "/logar", consumes = "application/json", produces = {"application/json"})
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<Object> logar(@Valid @RequestBody Login login) {
         if (login != null && login.getEmail() != null && login.getSenha() != null) {
@@ -32,6 +34,12 @@ public class LoginResource {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Por favor, enviei o e-mail e a senha");
         }
+    }
+
+    @PostMapping(consumes = "application/json", produces = {"application/json"})
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Login inserir(@Valid @RequestBody Login login) {
+        return loginRepository.save(login);
     }
 
 
