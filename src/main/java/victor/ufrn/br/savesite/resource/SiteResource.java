@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import victor.ufrn.br.savesite.model.Site;
 import victor.ufrn.br.savesite.repository.SiteRepository;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,6 +30,18 @@ public class SiteResource {
     @ResponseStatus(code = HttpStatus.CREATED)
     public Site inserir(@Valid @RequestBody Site site) {
         return siteRepository.save(site);
+    }
+
+    @PutMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    public Site atualizar(@Valid @RequestBody Site site) {
+        return siteRepository.save(site);
+    }
+
+    @DeleteMapping("/{idSite}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable Long idSite) {
+        siteRepository.deleteById(idSite);
     }
 
 }
