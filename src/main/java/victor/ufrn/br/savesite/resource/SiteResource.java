@@ -32,14 +32,14 @@ public class SiteResource {
         return siteRepository.save(site);
     }
 
-    @PutMapping
+    @PutMapping(consumes = "application/json", produces = {"application/json"})
     @ResponseStatus(code = HttpStatus.OK)
     public Site atualizar(@Valid @RequestBody Site site) {
         return siteRepository.save(site);
     }
 
     @DeleteMapping("/{idSite}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @ResponseStatus(code = HttpStatus.OK)
     public void atualizar(@PathVariable Long idSite) {
         siteRepository.deleteById(idSite);
     }
