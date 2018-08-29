@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/site")
+@CrossOrigin
 public class SiteResource {
 
     @Autowired
