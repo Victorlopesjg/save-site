@@ -19,8 +19,13 @@ public class SiteResource {
     private SiteRepository siteRepository;
 
     @GetMapping(produces = {"application/json"})
-    public List<Site> listarSites(@RequestParam(required = false, defaultValue = "nome") String sort) {
-        return siteRepository.findAll(new Sort(Direction.ASC, sort));
+    public List<Site> listarSites() {
+        return siteRepository.findAll();
+    }
+
+    @GetMapping("/{idSite}")
+    public Site listaPorId(@PathVariable Long idSite) {
+        return siteRepository.findById(idSite).get();
     }
 
     @PostMapping(consumes = "application/json", produces = {"application/json"})
