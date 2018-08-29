@@ -2,17 +2,20 @@ package victor.ufrn.br.savesite;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class SavesiteApplication {
+@ComponentScan
+public class SavesiteApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SavesiteApplication.class, args);
 	}
 
-	@RequestMapping("/index")
-	public void getAllContatos() {
-		System.out.print("teste");
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(SavesiteApplication.class);
 	}
 }
