@@ -29,7 +29,7 @@ public class LoginResource {
     @ResponseStatus(code = HttpStatus.OK)
     public ResponseEntity<Object> logar(@Valid @RequestBody Login login) {
         if (login != null && login.getEmail() != null && login.getSenha() != null) {
-            Query query = (Query) em.createQuery("select * from Login where email = \'" + login.getEmail() + "\' AND senha = \'" + login.getSenha() + "\'");
+            Query query = (Query) em.createQuery("select * from public.login where email = \'" + login.getEmail() + "\' AND senha = \'" + login.getSenha() + "\'");
             return new ResponseEntity<>((Login) query.getSingleResult(), HttpStatus.OK);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Por favor, enviei o e-mail e a senha");
