@@ -11,22 +11,12 @@ import java.time.LocalDate;
 
 public class SwaggerConfig {
 
-    //    @Bean
-//    public Docket api() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("victor.ufrn.br.savesite"))
-//                .paths(PathSelectors.any())
-//                .build();
-//    }
-    @Bean
-    public Docket mainConfig() {
+        @Bean
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.any())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("victor.ufrn.br.savesite"))
                 .paths(PathSelectors.any())
-                .build()
-                .pathMapping("/swagger")
-                .directModelSubstitute(LocalDate.class, String.class)
-                .genericModelSubstitutes(ResponseEntity.class);
+                .build();
     }
 }
